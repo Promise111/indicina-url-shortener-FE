@@ -1,5 +1,16 @@
 import style from "./Loader.module.css";
 
 export function Loader() {
-  <span className={style.loader}></span>;
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100vw",
+      }}
+    >
+      <div className={style["loader"]}></div>
+    </div>
+  );
 }

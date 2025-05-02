@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-import { getAllUrls, searchUrls } from '../api/urlService';
-import { useState } from 'react';
+import { useQuery } from "@tanstack/react-query";
+import { getAllUrls, searchUrls } from "../api/urlService";
+import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -13,17 +13,23 @@ import {
   Typography,
   Link,
   Box,
-} from '@mui/material';
+} from "@mui/material";
+import { Loader } from "./loader/Loader";
 
 const UrlList = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const { data: urls, isLoading, error } = useQuery({
-    queryKey: ['urls', searchQuery],
+  const {
+    data: urls,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["urls", searchQuery],
     queryFn: () => (searchQuery ? searchUrls(searchQuery) : getAllUrls()),
   });
 
-  if (isLoading) return <Typography>Loading...</Typography>;
+  //   if (isLoading) return <Typography>Loading...</Typography>;
+  if (isLoading) return <Loader />;
   if (error) return <Typography>Error loading URLs</Typography>;
 
   return (
@@ -61,7 +67,9 @@ const UrlList = () => {
                   </Link>
                 </TableCell>
                 <TableCell>{url.clickCount}</TableCell>
-                <TableCell>{new Date(url.createdAt).toLocaleString()}</TableCell>
+                <TableCell>
+                  {new Date(url.createdAt).toLocaleString()}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
