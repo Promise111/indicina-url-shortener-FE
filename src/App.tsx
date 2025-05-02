@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ListPage from "./pages/ListPage";
 import NotFound from "./pages/NotFound";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { CssBaseline, ThemeProvider, createTheme, Box } from "@mui/material";
+import Navbar from "./components/Navbar";
 
 const queryClient = new QueryClient();
 
@@ -24,11 +25,16 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/list" element={<ListPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <Navbar />
+            <Box component="main" sx={{ flexGrow: 1, py: 3 }}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/list" element={<ListPage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Box>
+          </Box>
         </BrowserRouter>
       </ThemeProvider>
     </QueryClientProvider>
