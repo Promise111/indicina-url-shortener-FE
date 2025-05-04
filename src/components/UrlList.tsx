@@ -14,7 +14,7 @@ import {
   Link,
   Box,
 } from "@mui/material";
-import { Loader } from "./loader/Loader";
+import { Loader } from "./Loader";
 
 const UrlList = () => {
   const [searchQuery, setSearchQuery] = useState("");
