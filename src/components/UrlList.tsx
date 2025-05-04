@@ -62,8 +62,14 @@ const UrlList = () => {
                   </Link>
                 </TableCell>
                 <TableCell>
-                  <Link href={url.shortUrl} target="_blank" rel="noopener">
-                    {url.shortUrl}
+                  <Link
+                    href={`${import.meta.env.VITE_BACKEND_BASE_URL}/${
+                      url.shortCode
+                    }`}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {url.shortCode}
                   </Link>
                 </TableCell>
                 <TableCell>{url.clickCount}</TableCell>
